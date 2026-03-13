@@ -5,6 +5,8 @@ import (
 	"strings"
 	"strconv"
 	"time"
+	"errors"
+	"log"
 )
 
 func main() {
@@ -118,4 +120,66 @@ func main() {
 		fmt.Printf("Attempts %d of %d\n", attempts, MaxRetries)
 	}
 
+	fmt.Println()
+	fmt.Println("The sum of two numbers", add(90,80)) 
+	fmt.Println("Hello MR ", greet("Manzi Joseph"))
+	sayHi()
+
+	fmt.Println()
+	// Caller unpacks both values
+	result, err := divide(10, 2)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("The results of the division ", result) // 5
+
+	fmt.Println()
+
+	min, max := minMax([]int{4, 7, 2, 9, 1})
+	fmt.Println("Min:", min, "Max:", max)
+
 }
+
+
+	// okay lets work on the functions
+
+	// addition
+	func add(a int, b int) int {
+		return a+b
+	}
+
+	// named paramenter function
+	func greet(name string) string {
+		return "Hello, " + name
+	}
+
+	// no parameter no return value
+	func sayHi(){
+		fmt.Println("Hello Genius")
+	}
+
+	// returns a results and an error - Go's signature patterns
+	func divide(a, b float64) (float64, error) {
+		if b == 0 {
+			return 0, errors.New("Division by zero")
+		}
+		return a / b, nil
+	}
+
+	// named returns
+	func minMax(nums []int) (min, max int){
+		min, max = nums[0], nums[0]
+		for _, v:= range nums {
+			if v < min { min = v}
+			if v > max { max = v}
+		}
+
+		return //"naked returns - returns min and max"
+	}
+
+
+
+
+	
+
+
